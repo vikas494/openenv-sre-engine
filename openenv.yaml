@@ -1,0 +1,27 @@
+version: "1.0"
+name: "sre-incident-simulator"
+description: "A real-world Site Reliability Engineering environment where agents diagnose and resolve microservice outages using terminal commands and log analysis."
+
+# This tells the validator where to find our core Python logic (we will build env.py in Step 4)
+environment:
+  python_class: "env:SREEnvironment"
+
+# This maps exactly to the Pydantic schemas we just built in Step 1
+models:
+  observation: "models:SREObservation"
+  action: "models:SREAction"
+  reward: "models:SREReward"
+
+# We strictly define our 3 tasks here to satisfy the "Minimum 3 tasks" grading requirement
+tasks:
+  - id: "task_1_easy"
+    description: "Diagnose and fix a missing environment variable causing 500 errors in the Auth service."
+    expected_difficulty: "easy"
+    
+  - id: "task_2_medium"
+    description: "Identify a database timeout in the Payment service caused by a bad connection pool configuration."
+    expected_difficulty: "medium"
+    
+  - id: "task_3_hard"
+    description: "Resolve a cascading failure involving an expired SSL certificate that is taking down the API Gateway and Inventory service."
+    expected_difficulty: "hard"
