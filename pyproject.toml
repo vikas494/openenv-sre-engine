@@ -1,0 +1,20 @@
+[project]
+name = "openenv-sre-engine"
+version = "0.1.0"
+description = "SRE Incident Simulator for OpenEnv"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic",
+    "openai",
+    "openenv-core",
+]
+# Critical: Must be 3.10+ for openenv-core
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+server = "app:main"
