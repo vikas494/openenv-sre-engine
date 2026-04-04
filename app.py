@@ -1,11 +1,10 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-import traceback
-
+from fastapi import FastAPI
 from env import SREEnvironment
 from models import SREAction
 
-app = FastAPI(title="OpenEnv SRE Simulator")
+app = FastAPI()
+
+# Initialize the environment globally so the API can talk to it
 sre_env = SREEnvironment()
 
 @app.get("/")
@@ -13,31 +12,30 @@ def read_root():
     return {"status": "ok", "message": "SRE Environment is running."}
 
 @app.post("/reset")
-def reset_env():
-    try:
-        obs = sre_env.reset()
-        return {"observation": obs.model_dump(), "reward": 0.0, "done": False}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@app.post("/state")
-def get_state():
-    try:
-        obs = sre_env.state()
-        return {"observation": obs.model_dump()}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+def reset_environment():
+    """Resets the environment and returns the initial observation."""
+    obs = sre_env.reset()
+    return obs.model_dump()
 
 @app.post("/step")
-def step_env(action: SREAction):
-    try:
-        obs, reward, done, info = sre_env.step(action)
-        return {
-            "observation": obs.model_dump(),
-            "reward": reward.model_dump(),
-            "done": done,
-            "info": info
-        }
-    except Exception as e:
-        traceback.print_exc()
-        raise HTTPException(status_code=500, detail=str(e))
+def step_environment(action: SREAction):
+    """Takes a step in the environment."""
+    obs, reward, done, info = sre_env.step(action)
+    
+    # Ensure reward is extracted correctly depending on your SREReward model
+    reward_val = reward.value if hasattr(reward, 'value') else float(reward)
+    
+    return {
+        "observation": obs.model_dump(),
+        "reward": reward_val,
+        "done": done,
+        "info": info
+    }
+
+@app.get("/state")
+def get_state():
+    """Returns the current state of the environment."""
+    return {
+        "task_id": sre_env.task_id,
+        "active": True
+    }
