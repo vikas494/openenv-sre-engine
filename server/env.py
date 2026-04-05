@@ -1,6 +1,6 @@
 import os
 from typing import Tuple
-from models import SREObservation, SREAction, SREReward
+from .models import SREObservation, SREAction, SREReward
 
 class SREEnvironment:
     def __init__(self):
