@@ -5,8 +5,8 @@ from openai import OpenAI
 from pydantic import ValidationError
 
 # Import our custom environment and models
-from env import SREEnvironment
-from models import SREAction
+from server.env import SREEnvironment
+from server.models import SREAction
 
 def log_start(task: str, env_name: str, model: str):
     print(f"[START] task={task} env={env_name} model={model}", flush=True)
