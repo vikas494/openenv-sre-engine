@@ -1,3 +1,4 @@
+import uvicorn
 from fastapi import FastAPI
 from .env import SREEnvironment
 from .models import SREAction
@@ -39,3 +40,12 @@ def get_state():
         "task_id": sre_env.task_id,
         "active": True
     }
+
+def main():
+    # Start the FastAPI server using uvicorn. 
+    # Port 7860 is the standard default for Hugging Face Spaces.
+    uvicorn.run(app, host="0.0.0.0", port=7860)
+
+# This execution block MUST remain at the very end of the file
+if __name__ == "__main__":
+    main()
