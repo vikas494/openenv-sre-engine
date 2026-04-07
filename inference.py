@@ -143,17 +143,17 @@ def main():
             )
 
         # Calculate final score (clamp between 0.0 and 1.0)
-        # Summing rewards could exceed 1.0 depending on design, so we strictly clamp it.
-        total_score = min(max(sum(rewards), 0.0), 1.0)
+        # New
+        total_score = min(max(sum(rewards), 0.01), 0.99)
         
-        # Override score to exactly 1.0 if successfully solved
+        # Override score to exactly 0.99 if successfully solved
         if success:
-            total_score = 1.0
+            total_score = 0.99
 
     except Exception as e:
         traceback.print_exc()
         success = False
-        total_score = 0.0
+        total_score = 0.01
     finally:
         # 6. Emit the required [END] log
         log_end(success=success, steps=steps_taken, score=total_score, rewards=rewards)
