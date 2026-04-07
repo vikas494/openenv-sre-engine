@@ -1,5 +1,0 @@
-[
-  { "id": "task_1_easy", "task_id": "task_1_easy", "grader": true, "has_grader": true },
-  { "id": "task_2_medium", "task_id": "task_2_medium", "grader": true, "has_grader": true },
-  { "id": "task_3_hard", "task_id": "task_3_hard", "grader": true, "has_grader": true }
-]
