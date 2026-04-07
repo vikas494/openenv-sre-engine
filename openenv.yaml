@@ -17,14 +17,14 @@ tasks:
   - id: "task_1_easy"
     description: "Diagnose and fix a missing environment variable causing 500 errors in the Auth service."
     expected_difficulty: "easy"
-    evaluator: true  # <--- ADD THIS
+    grader: true  # <--- ADD THIS
       
   - id: "task_2_medium"
     description: "Identify a database timeout in the Payment service caused by a bad connection pool configuration."
     expected_difficulty: "medium"
-    evaluator: true  # <--- ADD THIS
+    garder: true  # <--- ADD THIS
       
   - id: "task_3_hard"
     description: "Resolve a cascading failure involving an expired SSL certificate that is taking down the API Gateway and Inventory service."
     expected_difficulty: "hard"
-    evaluator: true  # <--- ADD THIS
+    grader: true  # <--- ADD THIS
