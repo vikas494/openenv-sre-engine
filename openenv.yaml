@@ -2,16 +2,15 @@ version: "1.0"
 name: "sre-incident-simulator"
 description: "A real-world Site Reliability Engineering environment where agents diagnose and resolve microservice outages using terminal commands and log analysis."
 
-# This tells the validator where to find our core Python logic
+# Add "server." so the validator knows to look inside the server folder
 environment:
-  python_class: "env:SREEnvironment"
+  python_class: "server.env:SREEnvironment"
 
-# This maps exactly to the Pydantic schemas we just built
 models:
-  observation: "models:SREObservation"
-  action: "models:SREAction"
-  reward: "models:SREReward"
-
+  observation: "server.models:SREObservation"
+  action: "server.models:SREAction"
+  reward: "server.models:SREReward"
+  
 # We strictly define our 3 tasks here AND ENABLE THE GRADER
 tasks:
   - id: "task_1_easy"
