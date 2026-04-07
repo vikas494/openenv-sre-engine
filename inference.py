@@ -35,8 +35,10 @@ def log_end(success: bool, steps: int, score: float, rewards: list):
 # ---------------------------------------------------------
 def main():
     # 1. Load credentials as mandated by the rules
-    api_base_url = os.getenv("API_BASE_URL","https://openrouter.ai/api/v1")
-    api_key = os.getenv("HF_TOKEN")
+    api_base_url = os.getenv("API_BASE_URL","https://openrouter.ai/api/v1")  # Fallback for local testing
+    api_key = os.getenv("API_KEY") 
+    if not api_key:
+        api_key = os.getenv("HF_TOKEN") # Fallback to your personal key for local testing
     model_name = os.getenv("MODEL_NAME", "qwen/qwen3.6-plus:free") # Fallback for local testing
 
     if not api_key:
