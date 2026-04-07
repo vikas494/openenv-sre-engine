@@ -1,7 +1,7 @@
 import uvicorn
 from fastapi import FastAPI
-from .env import SREEnvironment
-from .models import SREAction
+from server.env import SREEnvironment
+from server.models import SREAction
 
 app = FastAPI()
 
