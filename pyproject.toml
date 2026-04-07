@@ -18,3 +18,12 @@ build-backend = "hatchling.build"
 
 [project.scripts]
 server = "app:main"
+[tool.openenv.tasks]
+task_1_easy = { grader = true }
+task_2_medium = { grader = true }
+task_3_hard = { grader = true }
+
+[tool.tasks]
+task_1_easy = { grader = true }
+task_2_medium = { grader = true }
+task_3_hard = { grader = true }
